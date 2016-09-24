@@ -18,21 +18,19 @@ bool search(int value, int values[], int n)
     //initialize vars for working with parts of array 
     int lowerBorder = 0;
     int upperBorder = n - 1; 
-    int middle = (lowerBorder + upperBorder) / 2;
     //this loop will work until we have values in studied part of array 
     while (lowerBorder <= upperBorder)
     {
+        int middle = (lowerBorder + upperBorder) / 2;
         if (values[middle] == value)//checking if we have found our value 
         return true;
         else if (value < values[middle])//change borders of studied part
         {
             upperBorder = middle - 1;
-            middle = (lowerBorder + upperBorder) / 2;
         }
         else if (value > values[middle])
         {
             lowerBorder = middle + 1;
-            middle = (lowerBorder + upperBorder) / 2;
         }
         else 
             break;
