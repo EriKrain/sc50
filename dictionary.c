@@ -1,5 +1,5 @@
 /**
- * Implements a dictionary's functionality by using a try
+ * Implements a dictionary's functionality by using a trie
  */
 
 #include <stdbool.h>
@@ -23,7 +23,7 @@ typedef struct node{
  */
  
 bool unloadDict(node *currentPos, node *previousPos);
-node *root; // a pointer for a start of a try
+node *root; // a pointer for a start of a trie
 int wordsLoaded = 0; // counter for words loaded from dictionary
 
 /**
@@ -114,14 +114,14 @@ bool load(const char *dictionary)
     
     unsigned char stor = 0; // a place for storing current symbol
     unsigned char *storage = &stor; 
-    node *currentPosPtr; // a pointer for pointing on current place in a try
+    node *currentPosPtr; // a pointer for pointing on current place in a trie
     currentPosPtr = root;
     while (fread(storage, 1, 1, dictionaryPtr) != 0){ // condition for non-end of input file
         //check if reached end of the word
         if (*storage == '\n'){
             currentPosPtr->isWord = true; // define the end of the word
             wordsLoaded++; //increase the number of words
-            currentPosPtr = root; // return currentPosition to the head of try
+            currentPosPtr = root; // return currentPosition to the head of trie
         }
         else{
             int temp; // determine child's index for putting current letter
@@ -170,7 +170,7 @@ bool unload(void)
     node *previousPosPtr = currentPosPtr;
     // give pointers to function which will unload dictionary
     if (unloadDict(currentPosPtr, previousPosPtr) == true){
-       free(root); // at the end on the programm free the root of try
+       free(root); // at the end on the programm free the root of trie
        return true;
     }
     return false;
