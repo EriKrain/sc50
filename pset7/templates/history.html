@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('history') }}" method="post">
+        <fieldset>
+            <div clacc="container">
+            <table class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="width:200px">Symbol</th>
+                        <th style="width:180px">Shares</th>
+                        <th style="width:180px">Price</th>
+                        <th style="width:180px">Transacted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in arg1 %}
+                        <tr>
+                            <td>{{ row.symbol }}</td>
+                            {% if row.buysell == 0 %}
+                            <td>- {{ row.shares }}</td>
+                            {%endif%}
+                            {% if row.buysell == 1 %}
+                            <td>{{ row.shares }}</td>
+                            {%endif%}
+                            <td>{{ row.price }}</td>
+                            <td>{{ row.date  }}</td>
+                        
+                        </tr>
+                  {% endfor %} 
+                </tbody>
+                <tfood>
+                    <tr>
+                        
+                    </tr>
+                </tfood>
+            </table>  
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
+
+        

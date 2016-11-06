@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('index') }}" method="post">
+        <fieldset>
+            <div clacc="container">
+            <table class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="width:200px">Symbol</th>
+                        <th>Name</th>
+                        <th style="width:180px">Shares</th>
+                        <th style="width:180px">Price</th>
+                        <th style="width:180px">TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for row in arg1 %}
+                        <tr>
+                            <td>{{ row.symbol }}</td>
+                            
+                            <td>{% for rows in arg2 %}
+                                {% if row.symbol == rows.symbol %}
+                                    {{ rows.name }}                
+                                {% endif %}
+                            {% endfor %}</td>
+                            
+                            <td>{{ row.shares }}</td>
+                            
+                            <td>{% for rows in arg2 %}
+                                {% if row.symbol == rows.symbol %}
+                                    {{ rows.price }}                
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                            
+                            <td>
+                                {% for line in arg3 %}
+                                {% if row.symbol == line.symbol %}
+                                    {{ line.totalprice }}                
+                                {% endif %}
+                                {% endfor %}
+                                
+                            </td>
+                        </tr>
+                  {% endfor %} 
+                </tbody>
+                <tfood>
+                    <tr>
+                        <td>CASH</td>
+                        <td colspan="3"></td>
+                        <td>{{arg5}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td><strong>{{ arg4}}</strong></td>
+                    </tr>
+                </tfood>
+            </table>  
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
+
+        
