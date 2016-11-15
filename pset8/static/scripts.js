@@ -76,11 +76,11 @@ function addMarker(place)
     });
     
     // define geo for looking articles
-    var parametres = "geo=" + place.postal_code;
+    var parameters = "geo=" + place.postal_code;
     
     // prepare a list of articles for showInfo
     marker.addListener("click", function(){
-        $.getJSON(Flask.url_for("articles"), parametres, function(data){
+        $.getJSON(Flask.url_for("articles"), parameters, function(data){
             var content = "<ul>";
             for (var artic = 0; artic < data.length; artic++){
                 content = content + "<li><a href='" + data[artic].link + "'>" + data[artic].title + "</a></li>";
