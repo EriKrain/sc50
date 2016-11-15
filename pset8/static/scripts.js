@@ -168,18 +168,10 @@ function configure()
  */
 function removeMarkers()
 {
-    clearMarkers();
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
     markers = [];
-}
-
-function clearMarkers() {
-  setMapOnAll(null);
-}
-
-function setMapOnAll(map) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
-  }
 }
 
 /**
